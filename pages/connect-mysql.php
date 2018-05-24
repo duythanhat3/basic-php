@@ -15,3 +15,19 @@ foreach($result as $item){
     echo 'Mon ' . $item['name'] . ' hoc trong ' . $item['time'] . ' ngay <br />';
 }
 
+// update
+//$database->update('time', '10', 'subjects');
+
+// insert
+$dataInsert = [
+    'fields' => 'name,age,phone',
+    'values' => [
+        ['Diep An', 10, '0843757843545'],
+        ['Hanh', 11, '048357435'],
+        ['Dat', 12, '095374853']
+    ]
+];
+//$database->insert($dataInsert, 'students');
+
+// delete table
+$database->delete('trainers');

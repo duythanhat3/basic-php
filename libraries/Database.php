@@ -42,17 +42,61 @@ class Database {
     }
 
     /**
-     * update one record on database
+     * insert record
+     * @param array $arrayFieldValues
+     * [
+     *       'fields' => 'name,time,trainer',
+     *       'values' => [
+     *          ['HTML', 10, 'Mr.Thanh'],
+     *          ['CSS', 10, 'Mr.Thanh'],
+     *          ['JAVASCRIPT', 10, 'Mr.Thanh']
+     *        ]
+     * ];
+     * @param string $table
+     * @return boolean 
      */
-    public function update() {
+    public function insert(array $arrayFieldValues, $table) {
         
+        $sql = "INSERT INTO $table (" . $arrayFieldValues['fields'] . ") VALUES ";
+        $fieldVals = '';
+
+        foreach($arrayFieldValues['values'] as $fieldValues){
+            $fieldVals .= '(';
+            foreach($fieldValues as $value){
+                $fieldVals .= "'$value',";
+            }
+            $fieldVals = substr($fieldVals,0,-1) . '),';
+        }
+        $fieldVals = substr($fieldVals, 0, -1);
+        $sql .= $fieldVals;
+
+        $this->pdo->prepare($sql)->execute();
+        return true;
+    }
+
+    /**
+     * update one record on database
+     * 
+     * @param string $field
+     * @param mixed $value
+     * @param string $table
+     * @return boolean
+     */
+    public function update($field, $value, $table) {
+        $sql = "UPDATE `$table` SET `$field` = ?";
+        $this->pdo->prepare($sql)->execute([$value]);
+        return true;
     }
 
     /**
      * delete a record
+     * @param string $table
+     * @return boolean
      */
-    public function delete() {
-
+    public function delete($table) {
+        $sql = "DELETE FROM $table";
+        $this->pdo->prepare($sql)->execute();
+        return true;
     }
 
 }
