@@ -9,10 +9,14 @@ $pass = 'admin';
 $charset = 'utf8';
 
 $database = new Database($host, $db, $user, $pass);
-$result = $database->select(['name', 'time'], 'subjects');
 
-foreach($result as $item){
-    echo 'Mon ' . $item['name'] . ' hoc trong ' . $item['time'] . ' ngay <br />';
+$database->select(['name', 'age'], 'students');
+$database->where("`age` = 10");
+$result = $database->fetchAll();
+
+
+foreach($result as $item) {
+    echo 'Hoc vien ' . $item['name'] . ' ' . $item['age'] . ' tuoi <br />';
 }
 
 // update
@@ -22,12 +26,15 @@ foreach($result as $item){
 $dataInsert = [
     'fields' => 'name,age,phone',
     'values' => [
-        ['Diep An', 10, '0843757843545'],
+        ['Diep An', 10, '094343977'],
         ['Hanh', 11, '048357435'],
         ['Dat', 12, '095374853']
     ]
 ];
+
 //$database->insert($dataInsert, 'students');
+//$database->execute();
 
 // delete table
-$database->delete('trainers');
+//$database->delete('students');
+//$database->execute();

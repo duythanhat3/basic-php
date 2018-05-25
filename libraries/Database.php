@@ -4,6 +4,8 @@ class Database {
 
     private $pdo;
 
+    private $sql;
+
     public function __construct($host, $db, $user, $password, $charset = 'utf8'){
         $this->connect($host, $db, $user, $password, $charset = 'utf8');
     }
@@ -37,8 +39,7 @@ class Database {
      */
     public function select(array $arrayfields, $table) {
         $fields = implode(',', $arrayfields);
-        $sql = "SELECT $fields FROM $table";
-        return $this->pdo->query($sql)->fetchAll();
+        $this->sql = "SELECT $fields FROM $table";
     }
 
     /**
@@ -54,6 +55,7 @@ class Database {
      * ];
      * @param string $table
      * @return boolean 
+     * 
      */
     public function insert(array $arrayFieldValues, $table) {
         
@@ -70,8 +72,7 @@ class Database {
         $fieldVals = substr($fieldVals, 0, -1);
         $sql .= $fieldVals;
 
-        $this->pdo->prepare($sql)->execute();
-        return true;
+        $this->sql = $sql;
     }
 
     /**
@@ -83,9 +84,7 @@ class Database {
      * @return boolean
      */
     public function update($field, $value, $table) {
-        $sql = "UPDATE `$table` SET `$field` = ?";
-        $this->pdo->prepare($sql)->execute([$value]);
-        return true;
+        $this->sql = "UPDATE `$table` SET `$field` = $value";
     }
 
     /**
@@ -94,9 +93,31 @@ class Database {
      * @return boolean
      */
     public function delete($table) {
-        $sql = "DELETE FROM $table";
-        $this->pdo->prepare($sql)->execute();
-        return true;
+        $this->sql = "DELETE FROM $table";
     }
+
+    /**
+     * add where clause for query
+     * @param string $strWhere
+     */
+    public function where($strWhere) {
+        $this->sql .= ' WHERE ' . $strWhere; 
+    }
+
+    /**
+     * execute query
+     */
+    public function execute() {
+        $this->pdo->prepare($this->sql)->execute();
+    }
+
+    /**
+     * Fetch all data 
+     * @return array
+     */
+    public function fetchAll() {
+        return $this->pdo->query($this->sql)->fetchAll();
+    }
+
 
 }
