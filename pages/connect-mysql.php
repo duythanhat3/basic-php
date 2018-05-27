@@ -10,14 +10,11 @@ $charset = 'utf8';
 
 $database = new Database($host, $db, $user, $pass);
 
-$database->select(['name', 'age'], 'students');
-$database->where("`age` = 10");
-$result = $database->fetchAll();
+// $result = $database->select(['name', 'age'], 'students')->where("`age` = 10")->fetchAll();
 
-
-foreach($result as $item) {
-    echo 'Hoc vien ' . $item['name'] . ' ' . $item['age'] . ' tuoi <br />';
-}
+// foreach($result as $item) {
+//     echo 'Hoc vien ' . $item['name'] . ' ' . $item['age'] . ' tuoi <br />';
+// }
 
 // update
 //$database->update('time', '10', 'subjects');
@@ -32,9 +29,6 @@ $dataInsert = [
     ]
 ];
 
-//$database->insert($dataInsert, 'students');
-//$database->execute();
+//$database->insert($dataInsert, 'students')->execute();
 
-// delete table
-//$database->delete('students');
-//$database->execute();
+$database->delete('students')->where('age = 10')->execute();

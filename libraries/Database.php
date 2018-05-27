@@ -35,11 +35,11 @@ class Database {
      * 
      * @param array $fields
      * @param string $table
-     * @return array
      */
     public function select(array $arrayfields, $table) {
         $fields = implode(',', $arrayfields);
         $this->sql = "SELECT $fields FROM $table";
+        return $this;
     }
 
     /**
@@ -54,8 +54,7 @@ class Database {
      *        ]
      * ];
      * @param string $table
-     * @return boolean 
-     * 
+     * @return self
      */
     public function insert(array $arrayFieldValues, $table) {
         
@@ -73,6 +72,8 @@ class Database {
         $sql .= $fieldVals;
 
         $this->sql = $sql;
+
+        return $this;
     }
 
     /**
@@ -81,10 +82,10 @@ class Database {
      * @param string $field
      * @param mixed $value
      * @param string $table
-     * @return boolean
      */
     public function update($field, $value, $table) {
         $this->sql = "UPDATE `$table` SET `$field` = $value";
+        return $this;
     }
 
     /**
@@ -94,6 +95,8 @@ class Database {
      */
     public function delete($table) {
         $this->sql = "DELETE FROM $table";
+
+        return $this;
     }
 
     /**
@@ -101,7 +104,8 @@ class Database {
      * @param string $strWhere
      */
     public function where($strWhere) {
-        $this->sql .= ' WHERE ' . $strWhere; 
+        $this->sql .= ' WHERE ' . $strWhere;
+        return $this;
     }
 
     /**
