@@ -1,6 +1,6 @@
 <?php
 
-include_once ('../libraries/Database.php');
+include_once ('Database.php');
 
 $host = 'basicphp_mysql_1:3306';
 $db   = 'blogs';

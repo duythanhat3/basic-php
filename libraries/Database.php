@@ -32,9 +32,10 @@ class Database {
 
     /**
      * select database
-     * 
-     * @param array $fields
+     *
+     * @param array $arrayfields
      * @param string $table
+     * @return $this
      */
     public function select(array $arrayfields, $table) {
         $fields = implode(',', $arrayfields);
@@ -78,10 +79,11 @@ class Database {
 
     /**
      * update one record on database
-     * 
+     *
      * @param string $field
      * @param mixed $value
      * @param string $table
+     * @return $this
      */
     public function update($field, $value, $table) {
         $this->sql = "UPDATE `$table` SET `$field` = $value";
@@ -101,7 +103,9 @@ class Database {
 
     /**
      * add where clause for query
+     *
      * @param string $strWhere
+     * @return $this
      */
     public function where($strWhere) {
         $this->sql .= ' WHERE ' . $strWhere;
@@ -123,5 +127,35 @@ class Database {
         return $this->pdo->query($this->sql)->fetchAll();
     }
 
+    /**
+     * fetch data for a record
+     * @return array
+     */
+    public function fetch() {
+        return $this->pdo->query($this->sql)->fetch();
+    }
+
+    /**
+     * Limit record
+     *
+     * @param int $limit
+     * @return $this
+     */
+    public function limit($limit = 10) {
+        $this->sql .= ' LIMIT ' . $limit;
+        return $this;
+    }
+
+    /**
+     * Order by
+     *
+     * @param $field
+     * @param string $type
+     * @return $this
+     */
+    public function orderBy($field, $type = 'DESC') {
+        $this->sql .= ' ORDER BY ' . $field . ' ' . $type;
+        return $this;
+    }
 
 }

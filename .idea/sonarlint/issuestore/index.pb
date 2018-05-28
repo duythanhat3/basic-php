@@ -1,0 +1,27 @@
+
+F
+libraries/Database.php,d/d/dda3f85f2d0561855343e456919bceb277d34bdd
+D
+libraries/helper.php,d/c/dc113b79fc1a36d6975833e41ad18b9a4e9585e3
+P
+ pages/includes/sidebar-right.php,2/2/22e033016dfc34276c4d4d09e10e930610a0583e
+E
+libraries/library.php,8/9/89d2408500ed10d2940d3be55726007b7f652a2c
+G
+pages/includes/menu.php,6/f/6fb93eee5c1d0e15122e17efdf6cc9e777cb0b30
+@
+pages/detail.php,6/f/6fc1862fb23c4d148478dd7476d6811948a1802e
+O
+pages/includes/intro-header.php,9/5/956e01867ffb6d171ad4fdc00fa5aea79b4aca54
+O
+pages/includes/resource-top.php,0/0/001a4e966d50e4d23308be40d011b11e74357af3
+Q
+!pages/includes/resoure-bottom.php,e/e/ee512aee889a029414cc8973278fe1e7d03d5c59
+9
+	index.php,b/b/bb6499b8e938f92a3695fff1afe57edea4b9efb7
+O
+pages/includes/intro-footer.php,d/7/d7912d3045eb638e6d2a45a40fe58855b8bc74e1
+K
+libraries/connect-mysql.php,8/3/834a7501bd5bb498225abc13b26e7af632125851
+D
+libraries/action.php,a/0/a069d003a0843ac04a0feff5c2359a24adf1f34b
